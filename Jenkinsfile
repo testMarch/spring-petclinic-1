@@ -1,7 +1,7 @@
 pipeline
 	{
 		agent { label 'node1'}
-        trigger {
+        triggers {
             pollSCM('* 23 * * 1-5')
         }
 		stages
