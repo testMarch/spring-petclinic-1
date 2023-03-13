@@ -1,5 +1,6 @@
 pipeline
 	{
+		agent { label 'JDK_17_Master'}
         triggers {
             pollSCM('* 23 * * 1-5')
         }
