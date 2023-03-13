@@ -3,6 +3,6 @@ FromJDK 17
 
 Jenkins
 Git pull request demo
-
+artofact and test report
 
 end of line
