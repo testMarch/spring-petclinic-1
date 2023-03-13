@@ -21,6 +21,15 @@ pipeline
 					sh "mvn clean package"
 				}
 			}
+			stage('deploy')
+			{
+				steps
+				{
+					sshagent(['deploy_ser']) {
+						sh "scp **/target/spring-petclinic-3.0.0-SNAPSHOT.jar sujata@74.235.162.232:/var/lib/tomcat9/webapps/ROOT/"
+					}
+				}
+			}
 			stage('post build')
 			{
 				steps
