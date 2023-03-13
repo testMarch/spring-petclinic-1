@@ -25,8 +25,8 @@ pipeline
 			{
 				steps
 				{
-					sshagent(['deploy_user']) {
-						sh "scp  -o StrictHostKeyChecking=no **/target/spring-petclinic-3.0.0-SNAPSHOT.jar sujata@74.235.162.232:/var/lib/tomcat9/webapps/ROOT/"
+					sshagent(['deploy_app']) {
+						sh "scp -o StrictHostKeyChecking=no **/target/spring-petclinic-3.0.0-SNAPSHOT.jar sujata@74.235.162.232:/var/lib/tomcat9/webapps/ROOT/"
 					}
 				}
 			}
