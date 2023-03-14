@@ -26,7 +26,7 @@ pipeline
 				steps
 				{
 					sshagent(['deploy_app']) {
-						sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/spring-petclinicDeployTest/target/spring-petclinic-3.0.0-SNAPSHOT.jar sujata@20.51.232.169:/var/lib/tomcat9/webapps/ROOT"
+						sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/spring-petclinicDeployTest/target/spring-petclinic-3.0.0-SNAPSHOT.jar sujata@52.146.88.86:/home/sujata/deploy"
 					}
 		 		}
 			}
