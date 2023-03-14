@@ -14,11 +14,20 @@ pipeline
 					branch: 'develop'
 				}
 			}
-			stage('package')
+			stage('build')
 			{
 				steps
 				{
 					sh "mvn clean package"
+				}
+			}
+			stage('post build')
+			{
+				steps
+				{
+					archiveArtifacts artifacts: '**/target/spring-petclinic-3.0.0-SNAPSHOT.jar',
+									 onlyIfSuccessful: true
+					junit testResults: '**/surefire-reports/TEST-*.xml'                 
 				}
 			}
 			stage('push')
@@ -39,14 +48,6 @@ pipeline
 					}
 		 		}
 			}
-			stage('post build')
-			{
-				steps
-				{
-					archiveArtifacts artifacts: '**/target/spring-petclinic-3.0.0-SNAPSHOT.jar',
-									 onlyIfSuccessful: true
-					junit testResults: '**/surefire-reports/TEST-*.xml'                 
-				}
-			}
+			
 		}
 	}
