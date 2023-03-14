@@ -36,7 +36,7 @@ pipeline
 				{
 					sshagent(['deploy_app']) {
 						sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/spring-petclinicDeployTest/target/spring-petclinic-3.0.0-SNAPSHOT.jar sujata@52.146.88.86:/home/sujata"
-						sh "scp -o StrictHostKeyChecking=no sujata@52.146.88.86:/home/sujata/myscript.sh /home/sujata/"
+						sh "scp -o StrictHostKeyChecking=no sujata@52.146.88.86:/home/sujata/myscript.sh /home/sujata"
 					}
 		 		}
 			}
