@@ -44,7 +44,7 @@ pipeline
 				steps
 				{
 					sshagent(['deploy_app']) {
-						sh "ssh sujata@52.146.88.86 kill -9 $(lsof -t -i:8080)"
+						sh "ssh sujata@52.146.88.86 kill -9 ${lsof -t -i:8080}"
 						sh "ssh sujata@52.146.88.86 java -jar spring-petclinic-3.0.0-SNAPSHOT.jar"
 					}
 		 		}
