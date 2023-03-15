@@ -21,14 +21,7 @@ pipeline
 					sh "mvn clean package"
 				}
 			}
-			stage('sonar analysis') {
-            steps {
-                // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
-                	withSonarQubeEnv('SONAR_CLOUD') {
-                    sh 'mvn clean package sonar:sonar -Dsonar.organization=springpetclinic1'
-                }
-            }
-        }
+			
 			stage('post build')
 			{
 				steps
@@ -38,7 +31,25 @@ pipeline
 					junit testResults: '**/surefire-reports/TEST-*.xml'                 
 				}
 			}
-		
+						stage('push')
+			{
+				steps
+				{
+					sshagent(['deploy_app']) {
+						sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/spring-petclinicDeployTest/target/spring-petclinic-3.0.0-SNAPSHOT.jar sujata@52.146.88.86:/home/sujata"
+					}
+		 		}
+			}
+			stage('deploy')
+			{
+				steps
+				{
+					sshagent(['deploy_app']) {
+						sh "ssh sujata@52.146.88.86 bash myscript.sh"
+						sh "ssh sujata@52.146.88.86 java -jar spring-petclinic-3.0.0-SNAPSHOT.jar"
+					}
+		 		}
+			}
 			
 		}
 	}
